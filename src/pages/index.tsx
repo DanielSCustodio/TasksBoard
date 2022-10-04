@@ -1,5 +1,6 @@
+import React from 'react';
+import style from '../styles/home.module.sass';
+
 export default function Home() {
-  return (
-  <p>oi</p>
-  )
+  return <div className={style.title}>index</div>;
 }
