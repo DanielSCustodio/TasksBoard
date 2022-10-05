@@ -1,0 +1,59 @@
+$color-01: #D1E8E4
+$color-02: #C37B89
+$color-03: #BCCC9A
+$color-04: #EAE7C6
+
+.headerContainer
+  background-color: $color-02
+  color: $color-04
+  width: 100vw
+  border-bottom: 2px solid #fff
+
+
+.headerContent
+  display: flex
+  justify-content: space-between
+  align-items: center
+  height: 10vh
+  max-width: 90vw
+  margin: 0 auto
+
+  @media(max-width: 720px) 
+    max-width: 95vw
+
+
+
+#logo-mobile
+  display: none
+  object-fit: contain
+  @media(max-width: 720px) 
+    display: inline
+    width: 30px
+    margin-right: 0.5rem
+    margin-bottom: -0.3rem
+
+#logo-desktop
+  object-fit: contain
+  display: inline
+  @media(max-width: 720px) 
+    display: none
+
+.navContent
+  nav
+    display: flex
+    flex-wrap: nowrap
+    justify-content: space-between
+
+    a
+      font-size: 0.9rem
+      transition: 0.8s
+      &+a
+      margin-left: 1rem
+
+      &:hover
+        color: $color-01
+
+
+
+
+
