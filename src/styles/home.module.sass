@@ -1,14 +1,14 @@
 $color-01: #D1E8E4
 $color-02: #C37B89
+$color-02-transparent: #c37b899c
 $color-03: #BCCC9A
 $color-04: #EAE7C6
 
 .contentContainer
-
-  background-color: $color-01
+  background-color: $color-02
 
 .banner
-  background-image: linear-gradient(to bottom,    rgba(255, 255, 255, 0.378),    $color-04  ), url("/images/todo.svg")
+  background-image: linear-gradient(to bottom,    $color-02-transparent,    $color-04  ), url("/images/todo.svg")
   background-repeat: no-repeat
   background-position: left
   height: 100vh
@@ -25,7 +25,9 @@ $color-04: #EAE7C6
 
 
   h1
+    color: $color-03
     font-size: 10rem
+    text-shadow: black 0.1em 0.1em 0.2em
     animation-duration: 1s
     animation-name: slidein
 
@@ -35,17 +37,14 @@ $color-04: #EAE7C6
     @media(max-width: 720px) 
       font-size: 3.5rem
     
-
-
-
     span
-      color: $color-03
+      color: $color-01
       font-weight: 300
   
   p
     color: $color-02
     font-size: 1.5rem
-    font-weight: 300
+    font-weight: 400
     text-align:center
     animation-duration: 2s
     animation-name: slidein
@@ -106,6 +105,7 @@ $color-04: #EAE7C6
 
 .donatersContainer
   padding: 5rem
+  color: $color-01
 
   h2
     text-align: center
