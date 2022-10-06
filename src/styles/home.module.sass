@@ -1,0 +1,142 @@
+$color-01: #D1E8E4
+$color-02: #C37B89
+$color-03: #BCCC9A
+$color-04: #EAE7C6
+
+.contentContainer
+
+  background-color: $color-01
+
+.banner
+  background-image: linear-gradient(to bottom,    rgba(255, 255, 255, 0.378),    $color-04  ), url("/images/todo.svg")
+  background-repeat: no-repeat
+  background-position: left
+  height: 100vh
+  display: flex
+  flex-direction: column
+  justify-content: center
+  padding-left: 5rem
+
+  @media(max-width: 720px) 
+    padding:  1rem
+    height: 467px
+    background-position: center
+    background-size: contain
+
+
+  h1
+    font-size: 10rem
+    animation-duration: 1s
+    animation-name: slidein
+
+    @media(max-width: 912px) 
+      font-size: 5rem
+
+    @media(max-width: 720px) 
+      font-size: 3.5rem
+    
+
+
+
+    span
+      color: $color-03
+      font-weight: 300
+  
+  p
+    color: $color-02
+    font-size: 1.5rem
+    font-weight: 300
+    text-align:center
+    animation-duration: 2s
+    animation-name: slidein
+
+    @media(max-width: 720px) 
+      font-size: 1.2rem
+
+
+  @keyframes slidein 
+    from 
+      margin-left: 100%
+      width: 50%
+    to 
+      margin-left: 0%
+      width: 100%
+
+
+.callToAction
+  padding: 0 5rem
+  background-color: $color-04
+
+  @media(max-width: 720px) 
+    padding:  1rem
+
+  h2
+    font-size: 4rem
+    text-align: center
+    font-weight: 700
+
+    @media(max-width: 912px) 
+      text-align: left
+      font-size: 3rem
+
+
+    @media(max-width: 720px) 
+      font-size: 2rem
+      text-align: left
+
+  p
+    font-size: 2rem
+    text-align: center
+    font-weight: 300
+    padding-bottom: 5rem 
+
+    @media(max-width: 912px) 
+      text-align: left
+      margin-top: 1rem
+
+
+    @media(max-width: 720px) 
+      font-size: 1.5rem
+      text-align: left
+      margin-top: 1rem
+
+  span
+    color: $color-03
+
+
+.donatersContainer
+  padding: 5rem
+
+  h2
+    text-align: center
+    margin-bottom: 1rem
+
+  @media(max-width: 720px) 
+    padding: 3rem 1rem
+
+.donatersContent
+  display: flex
+  flex-wrap: wrap
+  justify-content: first baseline
+  align-content: flex-start
+  max-width: 80vw
+
+  @media(max-width: 720px) 
+    max-width: 100vw
+
+  img
+    width: 80px
+    height: 80px
+    margin-right: 0.5rem
+    object-fit: cover
+    border-radius: 50%
+    transition: 0.8s
+    margin-top: 1rem
+    margin-left: 1rem
+
+    &:hover
+      transform: scale(1.2)
+
+    @media(max-width: 720px) 
+      width: 50px
+      height: 50px
