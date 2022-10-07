@@ -1,16 +1,17 @@
 $color-01: #D1E8E4
 $color-02: #C37B89
-$color-02-transparent: #c37b899c
 $color-03: #BCCC9A
 $color-04: #EAE7C6
+$bg: #fffefe
+
 
 .contentContainer
-  background-color: $color-02
+  background-color: $bg
 
 .banner
-  background-image: linear-gradient(to bottom,    $color-02-transparent,    $color-04  ), url("/images/todo.svg")
+  background-image: url("/images/todo.svg")
   background-repeat: no-repeat
-  background-position: left
+  background-position: right
   height: 100vh
   display: flex
   flex-direction: column
@@ -20,22 +21,26 @@ $color-04: #EAE7C6
   @media(max-width: 720px) 
     padding:  1rem
     height: 467px
-    background-position: center
+    background-image: linear-gradient(to bottom,    #ffffff84,    #fff  ), url("/images/todo.svg")
+    background-position: right
     background-size: contain
+    
 
 
   h1
     color: $color-03
-    font-size: 10rem
-    text-shadow: black 0.1em 0.1em 0.2em
+    font-size: 5.5rem
     animation-duration: 1s
     animation-name: slidein
 
     @media(max-width: 912px) 
       font-size: 5rem
+      text-shadow: black 0.1em 0.1em 0.1em
+
 
     @media(max-width: 720px) 
       font-size: 3.5rem
+      text-shadow: black 0.1em 0.1em 0.1em
     
     span
       color: $color-01
@@ -43,15 +48,15 @@ $color-04: #EAE7C6
   
   p
     color: $color-02
-    font-size: 1.5rem
+    font-size: 1rem
     font-weight: 400
-    text-align:center
+    margin-top: -1.5rem
     animation-duration: 2s
     animation-name: slidein
 
     @media(max-width: 720px) 
-      font-size: 1.2rem
-
+      font-size: 0.8rem
+      margin-top: -1rem
 
   @keyframes slidein 
     from 
@@ -63,13 +68,14 @@ $color-04: #EAE7C6
 
 
 .callToAction
-  padding: 0 5rem
-  background-color: $color-04
+  padding: 4rem
+  background-color: $color-02
 
   @media(max-width: 720px) 
     padding:  1rem
 
   h2
+    color: $color-01
     font-size: 4rem
     text-align: center
     font-weight: 700
@@ -80,14 +86,14 @@ $color-04: #EAE7C6
 
 
     @media(max-width: 720px) 
-      font-size: 2rem
+      font-size: 1.8rem
       text-align: left
 
   p
+    color: $color-01
     font-size: 2rem
     text-align: center
     font-weight: 300
-    padding-bottom: 5rem 
 
     @media(max-width: 912px) 
       text-align: left
@@ -95,7 +101,7 @@ $color-04: #EAE7C6
 
 
     @media(max-width: 720px) 
-      font-size: 1.5rem
+      font-size: 1rem
       text-align: left
       margin-top: 1rem
 
@@ -105,7 +111,7 @@ $color-04: #EAE7C6
 
 .donatersContainer
   padding: 5rem
-  color: $color-01
+  color: $color-03
 
   h2
     text-align: center
@@ -120,6 +126,7 @@ $color-04: #EAE7C6
   justify-content: first baseline
   align-content: flex-start
   max-width: 80vw
+  margin: 0 auto
 
   @media(max-width: 720px) 
     max-width: 100vw
