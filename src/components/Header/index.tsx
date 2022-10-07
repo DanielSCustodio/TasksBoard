@@ -33,7 +33,7 @@ export default function Header() {
               <a>Home</a>
             </Link>
             <Link href="/board">
-              <a>Minhas Tarefas</a>
+              <a>Tarefas</a>
             </Link>
           </nav>
         </div>
