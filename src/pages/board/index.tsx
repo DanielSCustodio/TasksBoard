@@ -2,6 +2,7 @@ import React from 'react';
 import SEO from '../../components/SEO';
 import styles from './styles.module.sass';
 import { FiCalendar, FiClock, FiEdit2, FiPlus, FiTrash } from 'react-icons/fi';
+import SupportButton from '../../components/SupportButton';
 
 export default function Board() {
   return (
@@ -9,7 +10,7 @@ export default function Board() {
       <SEO title="Tarefas" />
       <main className={styles.content}>
         <form>
-          <input type="text" placeholder="Adicione uma tarefa..." />
+          <input type="text" placeholder="Adicione uma tarefa" />
           <button type="submit">
             <FiPlus size={25} />
           </button>
@@ -26,12 +27,12 @@ export default function Board() {
                 <time>08 Dezembro 2022</time>
               </div>
               <button>
-                <FiEdit2 size={20} color="#BCCC9A" />
+                <FiEdit2 size={18} color="#BCCC9A" />
                 <span>Editar</span>
               </button>
             </div>
             <button>
-              <FiTrash color="#FF3636" />
+              <FiTrash size={18} color="#FF3636" />
               <span>Excluir</span>
             </button>
           </div>
@@ -44,6 +45,7 @@ export default function Board() {
           <time>Ultima doação foi há 3 dias.</time>
         </div>
       </section>
+      <SupportButton />
     </section>
   );
 }

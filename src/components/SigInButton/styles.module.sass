@@ -3,6 +3,41 @@ $color-02: #C37B89
 $color-03: #BCCC9A
 $color-04: #EAE7C6
 
+.SignOutButton
+  height: 10vh
+  padding: 0 1.5rem
+  font-size: 0.9rem
+  border: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  color: $color-04
+  background: transparent
+  transition: filter 0.8s
+
+  img
+    width: 40px
+    height: 40px
+    margin-right: 0.5rem
+    object-fit: cover
+    border-radius: 50%
+
+  button
+    border: 0
+    background: transparent
+
+    svg
+      width: 20px
+      height: 20px
+      margin: 0 0.5rem
+      color: $color-01
+      margin-bottom: -0.2rem
+      transition: 0.8s
+      
+      &:hover
+        filter: brightness(0.9)
+
+        
 .SigInButton
   height: 10vh
   padding: 0 1.5rem
@@ -29,4 +64,4 @@ $color-04: #EAE7C6
     transition: 0.8s
 
   &:hover
-    filter: brightness(0.8)
+    filter: brightness(0.9)
