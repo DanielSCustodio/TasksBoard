@@ -1,0 +1,136 @@
+$color-01: #D1E8E4
+$color-02: #C37B89
+$color-03: #BCCC9A
+$color-04: #EAE7C6
+$bg: #F2F2F2
+
+
+.container
+  padding-top: 6rem
+  height: 100vh
+  max-width: 70vw
+  margin: 0 auto
+
+  @media(max-width: 720px) 
+    max-width: 90vw
+    padding-top: 9rem
+
+  h2
+    margin: 2rem 0
+    text-align: center
+
+.content
+  background-color: $color-02
+  border-radius: 6px
+  padding: 2rem
+
+  @media(max-width: 720px) 
+    padding: 2rem 1rem
+
+  form
+    display: flex
+    justify-content: center
+    align-items: center
+
+    input
+      width: 90%
+      height: 3rem
+      border: 1px solid #FFF
+      border-radius: 6px
+      padding: 3px 10px
+      color: #333333
+      outline: none
+
+      @media(max-width: 720px) 
+        width: 85%
+
+      &:focus
+        border: 1px solid $color-04
+        background-color: $color-01
+
+
+    button
+      margin-left: 1rem
+      width: 10%
+      height: 3rem
+      border: 0
+      background-color: $color-03
+      border-radius: 6px
+      color: $color-01
+      box-shadow: 1px 1px 2px #000000a0
+
+      transition: 0.8s
+      
+      @media(max-width: 720px) 
+        width: 15%
+
+      &:hover
+        filter: brightness(1.1)
+    
+.taskLists
+  background-color: $color-04
+  padding: 1rem
+  border-radius: 6px
+  margin: 1rem 0
+  box-shadow: 1px 1px 2px $color-02
+
+  p
+    cursor: pointer
+    font-size: 1rem
+    line-height: 150%
+
+    @media(max-width: 720px) 
+      font-size: 0.9rem
+
+  .actions
+    width: 100%
+    display: flex
+    justify-content: space-between
+    margin-top: 1rem
+
+    div
+      display: flex
+      justify-content: center
+      align-items: center
+
+      time
+        color: $color-02
+        font-weight: bold
+        margin-left: 5px
+
+
+      @media(max-width: 720px) 
+        font-size: 0.7rem
+    
+    button
+      background: transparent
+      border: 0
+      display: flex
+      justify-content: center
+      align-items: center 
+      margin: 0 2rem
+      transition: 0.8s
+
+      span
+        color: $color-02
+        margin-left: 5px
+      
+      &:hover
+        filter: brightness(0.8)
+
+.vipsContainer
+  background-color: $color-04
+  padding: 1rem
+  border-radius: 6px
+
+  h3
+    color: $color-02
+    text-transform: uppercase 
+  
+  div
+    margin-top: 1rem
+    display: flex
+    align-items: center
+
+    time
+      padding: 10px

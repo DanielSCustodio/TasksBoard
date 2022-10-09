@@ -16,7 +16,6 @@ export default class MyDocument extends Document {
             href="images/favicon.svg"
             type="image/svg"
           />
-          <title>TasksBoard</title>
         </Head>
         <body>
           <Main />
