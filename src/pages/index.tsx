@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <SEO title="Início" />
-      <main className={style.contentContainer}>
+      <main>
         <div className={style.banner}>
           <h1>
             Tasks<span>Board</span>
