@@ -1,9 +1,13 @@
 import React from 'react';
+import { useSession } from 'next-auth/client';
+
 import Link from 'next/link';
 import style from './styles.module.sass';
 import SigInButton from '../SigInButton';
 
 export default function Header() {
+  const [session] = useSession();
+
   return (
     <header className={style.headerContainer}>
       <div className={style.headerContent}>
@@ -28,14 +32,16 @@ export default function Header() {
           </Link>
         </div>
         <div className={style.navContent}>
-          <nav>
-            <Link href="/">
-              <a>Início</a>
-            </Link>
-            <Link href="/board">
-              <a>Tarefas</a>
-            </Link>
-          </nav>
+          {session && (
+            <nav>
+              <Link href="/">
+                <a>Início</a>
+              </Link>
+              <Link href="/board">
+                <a>Tarefas</a>
+              </Link>
+            </nav>
+          )}
         </div>
         <SigInButton />
       </div>
