@@ -1,6 +1,5 @@
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { signOut, useSession } from 'next-auth/client';
 import React from 'react';
-import { FaGithub } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 import styles from './styles.module.sass';
 
@@ -16,13 +15,6 @@ export default function SignInButton() {
       </button>
     </div>
   ) : (
-    <button
-      type="button"
-      className={styles.SigInButton}
-      onClick={() => signIn('github')}
-    >
-      <FaGithub />
-      Entrar com o GitHub
-    </button>
+    <span>Olá, visitante!</span>
   );
 }

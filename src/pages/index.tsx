@@ -1,9 +1,13 @@
 import { GetStaticProps } from 'next';
+import { FaGithub } from 'react-icons/fa';
+import { signIn, useSession } from 'next-auth/client';
 import React from 'react';
 import SEO from '../components/SEO';
 import style from '../styles/home.module.sass';
 
 export default function Home() {
+  const [session] = useSession();
+
   return (
     <>
       <SEO title="Início" />
@@ -13,6 +17,16 @@ export default function Home() {
             Tasks<span>Board</span>
           </h1>
           <p>Nunca foi tão fácil se organizar</p>
+          {!session && (
+            <button
+              type="button"
+              className={style.SigInButton}
+              onClick={() => signIn('github')}
+            >
+              <FaGithub size={25} />
+              Entrar com o GitHub
+            </button>
+          )}
         </div>
 
         <section className={style.callToAction}>

@@ -150,3 +150,30 @@ $bg: #F2F2F2
     @media(max-width: 720px) 
       width: 50px
       height: 50px
+
+.SigInButton
+  margin-top: 3rem
+  background-color:  #2F363D
+  color: #fff
+  border: 0
+  width: 15rem
+  height: 3rem
+  border-radius: 50px
+  display: flex
+  justify-content: space-evenly
+  align-items: center
+  box-shadow: 1px 1px 2px #000000a0
+  transition: 0.8s
+
+  @media(max-width: 720px) 
+    font-size: 0.7rem
+    width: 12rem
+    height: 2.5rem
+
+    svg
+      width: 20px
+
+  &:hover
+    filter: brightness(0.8)
+    box-shadow: 1px 1px 20px #00000070
+  
