@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next';
 import React from 'react';
 import SEO from '../components/SEO';
 import style from '../styles/home.module.sass';
@@ -44,3 +45,10 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+    revalidate: 60 * 60,
+  };
+};
