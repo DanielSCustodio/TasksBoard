@@ -8,7 +8,6 @@ import style from '../styles/home.module.sass';
 
 export default function Home() {
   const [session] = useSession();
-  console.log(session);
 
   return (
     <>
