@@ -65,9 +65,18 @@ export default function Board({ user, data }: BoardProps) {
         };
         setTasksLists([data, ...tasksList]);
         setInput('');
-      })
-      .catch((err) => {
-        console.log('Deu merda', err);
+      });
+  }
+
+  async function handleDelete(id: string) {
+    await firebase
+      .firestore()
+      .collection('tarefas')
+      .doc(id)
+      .delete()
+      .then(() => {
+        const filter = tasksList.filter((item) => item.id !== id);
+        setTasksLists([...filter]);
       });
   }
 
@@ -115,7 +124,7 @@ export default function Board({ user, data }: BoardProps) {
                     <span>Editar</span>
                   </button>
                 </div>
-                <button>
+                <button onClick={() => handleDelete(item.id)}>
                   <FiTrash size={18} color="#FF3636" />
                   <span>Excluir</span>
                 </button>
