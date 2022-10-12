@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/client';
 
 import Link from 'next/link';
 import style from './styles.module.sass';
-import SigInButton from '../SigInButton';
+import SigInButton from '../SignOututton';
 
 export default function Header() {
   const [session] = useSession();
