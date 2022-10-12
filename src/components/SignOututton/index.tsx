@@ -8,7 +8,7 @@ export default function SignInButton() {
 
   return session ? (
     <div className={styles.SignOutButton}>
-      <img src={session.user.image} alt="Imagem do usuário" />
+      <img src={session.user.image} />
       <p>Olá, {session.user.name}</p>
       <button type="button" onClick={() => signOut()}>
         <FiLogOut className={styles.closeIcon} />

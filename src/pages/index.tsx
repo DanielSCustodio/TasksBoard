@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import { FaGithub } from 'react-icons/fa';
+import { ImGoogle3 } from 'react-icons/im';
 import { signIn, useSession } from 'next-auth/client';
 import React from 'react';
 import SEO from '../components/SEO';
@@ -7,6 +8,7 @@ import style from '../styles/home.module.sass';
 
 export default function Home() {
   const [session] = useSession();
+  console.log(session);
 
   return (
     <>
@@ -18,14 +20,24 @@ export default function Home() {
           </h1>
           <p>Nunca foi tão fácil se organizar</p>
           {!session && (
-            <button
-              type="button"
-              className={style.SigInButton}
-              onClick={() => signIn('github')}
-            >
-              <FaGithub size={25} />
-              Entrar com o GitHub
-            </button>
+            <>
+              <button
+                type="button"
+                className={style.SigInButtonGitHub}
+                onClick={() => signIn('github')}
+              >
+                <FaGithub size={25} />
+                Entrar com GitHub
+              </button>
+              <button
+                type="button"
+                className={style.SigInButtonGoogle}
+                onClick={() => signIn('google')}
+              >
+                <ImGoogle3 size={25} />
+                Entrar com Google
+              </button>
+            </>
           )}
         </div>
 
