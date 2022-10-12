@@ -1,10 +1,12 @@
 import React from 'react';
+import { format } from 'date-fns';
+import Link from 'next/link';
 import firebase from '../../services/firebaseConnection';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
-import SEO from '../../components/SEO';
 import styles from './styles.module.sass';
 import { FiCalendar, FiClock, FiEdit2, FiPlus, FiTrash } from 'react-icons/fi';
+import SEO from '../../components/SEO';
 import SupportButton from '../../components/SupportButton';
 
 interface BoardProps {
@@ -17,6 +19,7 @@ interface BoardProps {
 export default function Board({ user }: BoardProps) {
   const [input, setInput] = React.useState('');
   const [error, setError] = React.useState('');
+  const [tasksList, setTasksLists] = React.useState([]);
 
   function handleInput(e: { target: { value: React.SetStateAction<string> } }) {
     setError('');
@@ -40,7 +43,17 @@ export default function Board({ user }: BoardProps) {
         name: user.name,
       })
       .then((doc) => {
-        console.log(doc);
+        const data = {
+          id: doc.id,
+          created: new Date(),
+          createdFormated: format(new Date(), 'dd MMMM yy'),
+          task: input,
+          userId: user.id,
+          name: user.name,
+        };
+
+        setTasksLists([data, ...tasksList]);
+        setInput('');
       })
       .catch((err) => {
         console.log('Deu merda', err);
@@ -64,27 +77,40 @@ export default function Board({ user }: BoardProps) {
         </form>
         {error.length > 1 && <p className={styles.error}>{error}</p>}
       </main>
-      <h2>Você tem 3 Publicações</h2>
+      {tasksList.length === 0 ? (
+        <h2> Vamos começar, cadastre a sua primeira tarefa.</h2>
+      ) : (
+        <h2>
+          Você tem {tasksList.length}{' '}
+          {tasksList.length === 1 ? 'Tarefa.' : 'Tarefas.'}
+        </h2>
+      )}
       <section>
-        <article className={styles.taskLists}>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-          <div className={styles.actions}>
-            <div>
-              <div>
-                <FiCalendar size={20} color="#BCCC9A" />
-                <time>08 Dezembro 2022</time>
+        {tasksList &&
+          tasksList.map((item) => (
+            <article className={styles.taskLists} key={item.id}>
+              <Link href={`/board/${item.id}`}>
+                <p>{item.task}</p>
+              </Link>
+
+              <div className={styles.actions}>
+                <div>
+                  <div>
+                    <FiCalendar size={20} color="#BCCC9A" />
+                    <time>{item.createdFormated}</time>
+                  </div>
+                  <button>
+                    <FiEdit2 size={18} color="#BCCC9A" />
+                    <span>Editar</span>
+                  </button>
+                </div>
+                <button>
+                  <FiTrash size={18} color="#FF3636" />
+                  <span>Excluir</span>
+                </button>
               </div>
-              <button>
-                <FiEdit2 size={18} color="#BCCC9A" />
-                <span>Editar</span>
-              </button>
-            </div>
-            <button>
-              <FiTrash size={18} color="#FF3636" />
-              <span>Excluir</span>
-            </button>
-          </div>
-        </article>
+            </article>
+          ))}
       </section>
       <section className={styles.vipsContainer}>
         <h3>Obrigado por apoiar ⭐</h3>
