@@ -9,17 +9,29 @@ import { FiCalendar, FiClock, FiEdit2, FiPlus, FiTrash } from 'react-icons/fi';
 import SEO from '../../components/SEO';
 import SupportButton from '../../components/SupportButton';
 
+type TaskList = {
+  id: string;
+  created: string | Date;
+  createdFormated?: string;
+  task: string;
+  userId: string;
+  name: string;
+};
+
 interface BoardProps {
   user: {
     id: string;
     name: string;
   };
+  data;
 }
 
-export default function Board({ user }: BoardProps) {
+export default function Board({ user, data }: BoardProps) {
   const [input, setInput] = React.useState('');
   const [error, setError] = React.useState('');
-  const [tasksList, setTasksLists] = React.useState([]);
+  const [tasksList, setTasksLists] = React.useState<TaskList[]>(
+    JSON.parse(data),
+  );
 
   function handleInput(e: { target: { value: React.SetStateAction<string> } }) {
     setError('');
@@ -46,12 +58,11 @@ export default function Board({ user }: BoardProps) {
         const data = {
           id: doc.id,
           created: new Date(),
-          createdFormated: format(new Date(), 'dd MMMM yy'),
+          createdFormated: format(new Date(), 'dd MMMM yyyy'),
           task: input,
           userId: user.id,
           name: user.name,
         };
-
         setTasksLists([data, ...tasksList]);
         setInput('');
       })
@@ -78,11 +89,11 @@ export default function Board({ user }: BoardProps) {
         {error.length > 1 && <p className={styles.error}>{error}</p>}
       </main>
       {tasksList.length === 0 ? (
-        <h2> Vamos começar, cadastre a sua primeira tarefa.</h2>
+        <h2> Vamos começar? Cadastre a sua primeira tarefa.</h2>
       ) : (
         <h2>
-          Você tem {tasksList.length}{' '}
-          {tasksList.length === 1 ? 'Tarefa.' : 'Tarefas.'}
+          Você tem <span> {tasksList.length}</span>{' '}
+          {tasksList.length === 1 ? 'tarefa.' : 'tarefas.'}
         </h2>
       )}
       <section>
@@ -136,12 +147,29 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     };
   }
 
+  const tasks = await firebase
+    .firestore()
+    .collection('tarefas')
+    .where('userId', '==', session?.id)
+    .orderBy('created', 'desc')
+    .get();
+
+  const data = JSON.stringify(
+    tasks.docs.map((item) => {
+      return {
+        id: item.id,
+        createdFormated: format(item.data().created.toDate(), 'dd MMMM yyyy'),
+        ...item.data(),
+      };
+    }),
+  );
+
   const user = {
     name: session?.user.name,
     id: session?.id,
   };
 
   return {
-    props: { user },
+    props: { user, data },
   };
 };
