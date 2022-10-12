@@ -16,21 +16,22 @@ $bg: #F2F2F2
 
   @media(max-width: 720px) 
     padding:  2rem
-    height: 500px
-    background-image: linear-gradient(to bottom,    $color-01,    #ffffffda  ),
-    background-size: contain
+    height: 450px
+    background-image: linear-gradient(to top,    $color-01,    #ffffff00  ),
     
   h1
     color: $color-03
     font-size: 5.5rem
     animation-duration: 1s
+    animation-name: slidein
 
     @media(max-width: 912px) 
       font-size: 5rem
 
-
     @media(max-width: 720px) 
       font-size: 3.5rem
+      animation-duration: 0.0s
+
     
     span
       color: $color-02
@@ -44,11 +45,21 @@ $bg: #F2F2F2
     font-weight: 400
     margin-top: -1.5rem
     animation-duration: 2s
+    animation-name: slidein
 
     @media(max-width: 720px) 
       font-size: 0.8rem
       margin-top: -0.7rem
+      animation-duration: 0.0s
 
+
+  @keyframes slidein 
+    from 
+      margin-left: 100%
+      width: 50%
+    to 
+      margin-left: 0%
+      width: 100%
 
 .callToAction
   background-color: $color-01
@@ -56,8 +67,7 @@ $bg: #F2F2F2
 
 
   @media(max-width: 720px) 
-    padding:  1rem
-    margin-top: -4rem
+    padding:  0 2rem 1rem
 
   h2
     color: $color-02

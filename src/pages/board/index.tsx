@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from '../../services/firebaseConnection';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
 import SEO from '../../components/SEO';
@@ -6,17 +7,62 @@ import styles from './styles.module.sass';
 import { FiCalendar, FiClock, FiEdit2, FiPlus, FiTrash } from 'react-icons/fi';
 import SupportButton from '../../components/SupportButton';
 
-export default function Board() {
+interface BoardProps {
+  user: {
+    id: string;
+    name: string;
+  };
+}
+
+export default function Board({ user }: BoardProps) {
+  const [input, setInput] = React.useState('');
+  const [error, setError] = React.useState('');
+
+  function handleInput(e: { target: { value: React.SetStateAction<string> } }) {
+    setError('');
+    setInput(e.target.value);
+  }
+
+  async function handleAddTask(e: React.FormEvent) {
+    e.preventDefault();
+    if (!input) {
+      setError('Por favor, adicione uma tarefa.');
+      return;
+    }
+
+    await firebase
+      .firestore()
+      .collection('tarefas')
+      .add({
+        created: new Date(),
+        task: input,
+        userId: user.id,
+        name: user.name,
+      })
+      .then((doc) => {
+        console.log(doc);
+      })
+      .catch((err) => {
+        console.log('Deu merda', err);
+      });
+  }
+
   return (
     <section className={styles.container}>
       <SEO title="Tarefas" />
       <main className={styles.content}>
-        <form>
-          <input type="text" placeholder="Adicione uma tarefa" />
+        <form onSubmit={handleAddTask}>
+          <input
+            type="text"
+            placeholder="Adicione uma tarefa"
+            value={input}
+            onChange={handleInput}
+          />
           <button type="submit">
             <FiPlus size={25} />
           </button>
         </form>
+        {error.length > 1 && <p className={styles.error}>{error}</p>}
       </main>
       <h2>Você tem 3 Publicações</h2>
       <section>
@@ -64,7 +110,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     };
   }
 
+  const user = {
+    name: session?.user.name,
+    id: session?.id,
+  };
+
   return {
-    props: {},
+    props: { user },
   };
 };
