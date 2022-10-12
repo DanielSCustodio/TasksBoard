@@ -63,7 +63,6 @@ $bg: #F2F2F2
       border-radius: 6px
       color: $color-01
       box-shadow: 1px 1px 2px #000000a0
-
       transition: 0.8s
       
       @media(max-width: 720px) 
@@ -145,3 +144,26 @@ $bg: #F2F2F2
 .error
   margin-top: 1rem
   color: $color-04
+
+.taskEdit
+  background-color: $color-01
+  color: $color-02
+  width: 15vw
+  padding: 0.5rem
+  border-radius: 6px
+  display: flex
+  align-content: center
+  margin: 1rem 0
+
+  button
+    background: transparent
+    border: 0
+    margin-left: 1rem
+    display: flex
+    justify-content: center
+    align-content: center
+    margin-top: -3px
+    transition: 0.8s
+
+    &:hover
+        filter: brightness(0.8)
