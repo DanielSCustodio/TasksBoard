@@ -5,7 +5,14 @@ import firebase from '../../services/firebaseConnection';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
 import styles from './styles.module.sass';
-import { FiCalendar, FiClock, FiEdit2, FiPlus, FiTrash } from 'react-icons/fi';
+import {
+  FiCalendar,
+  FiClock,
+  FiEdit2,
+  FiPlus,
+  FiTrash,
+  FiX,
+} from 'react-icons/fi';
 import SEO from '../../components/SEO';
 import SupportButton from '../../components/SupportButton';
 
@@ -23,15 +30,17 @@ interface BoardProps {
     id: string;
     name: string;
   };
-  data;
+  data: string;
 }
 
 export default function Board({ user, data }: BoardProps) {
   const [input, setInput] = React.useState('');
+  const [taskEdit, setTaskEdit] = React.useState<TaskList | null>(null);
   const [error, setError] = React.useState('');
   const [tasksList, setTasksLists] = React.useState<TaskList[]>(
     JSON.parse(data),
   );
+  const inputElement = React.useRef<HTMLInputElement>();
 
   function handleInput(e: { target: { value: React.SetStateAction<string> } }) {
     setError('');
@@ -42,6 +51,29 @@ export default function Board({ user, data }: BoardProps) {
     e.preventDefault();
     if (!input) {
       setError('Por favor, adicione uma tarefa.');
+      return;
+    }
+
+    if (taskEdit) {
+      await firebase
+        .firestore()
+        .collection('tarefas')
+        .doc(taskEdit.id)
+        .update({
+          task: input,
+        })
+        .then(() => {
+          const data = tasksList;
+          const taskIndex = tasksList.findIndex(
+            (item) => item.id === taskEdit.id,
+          );
+          data[taskIndex].task = input;
+
+          setTaskEdit(null);
+          setInput('');
+          inputElement.current.focus();
+        });
+
       return;
     }
 
@@ -65,6 +97,7 @@ export default function Board({ user, data }: BoardProps) {
         };
         setTasksLists([data, ...tasksList]);
         setInput('');
+        inputElement.current.focus();
       });
   }
 
@@ -80,12 +113,33 @@ export default function Board({ user, data }: BoardProps) {
       });
   }
 
+  async function handleEdit(task: TaskList) {
+    setTaskEdit(task);
+    setInput(task.task);
+    inputElement.current.focus();
+  }
+
+  function hadleCancelEdit() {
+    setTaskEdit(null);
+    setInput('');
+    inputElement.current.focus();
+  }
+
   return (
     <section className={styles.container}>
       <SEO title="Tarefas" />
+      {taskEdit && (
+        <div className={styles.taskEdit}>
+          <p>Modo de edição</p>
+          <button onClick={hadleCancelEdit}>
+            <FiX color="#ff5b5b" size={30} />
+          </button>
+        </div>
+      )}
       <main className={styles.content}>
         <form onSubmit={handleAddTask}>
           <input
+            ref={inputElement}
             type="text"
             placeholder="Adicione uma tarefa"
             value={input}
@@ -95,7 +149,7 @@ export default function Board({ user, data }: BoardProps) {
             <FiPlus size={25} />
           </button>
         </form>
-        {error.length > 1 && <p className={styles.error}>{error}</p>}
+        {error && <p className={styles.error}>{error}</p>}
       </main>
       {tasksList.length === 0 ? (
         <h2> Vamos começar? Cadastre a sua primeira tarefa.</h2>
@@ -119,13 +173,13 @@ export default function Board({ user, data }: BoardProps) {
                     <FiCalendar size={20} color="#BCCC9A" />
                     <time>{item.createdFormated}</time>
                   </div>
-                  <button>
+                  <button onClick={() => handleEdit(item)}>
                     <FiEdit2 size={18} color="#BCCC9A" />
                     <span>Editar</span>
                   </button>
                 </div>
                 <button onClick={() => handleDelete(item.id)}>
-                  <FiTrash size={18} color="#FF3636" />
+                  <FiTrash size={18} color="#ff5b5b" />
                   <span>Excluir</span>
                 </button>
               </div>
