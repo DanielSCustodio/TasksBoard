@@ -5,6 +5,7 @@ import firebase from '../../services/firebaseConnection';
 import { format } from 'date-fns';
 import { FiCalendar } from 'react-icons/fi';
 import styles from './id_styles.module.sass';
+import SEO from '../../components/SEO';
 
 type Task = {
   id: string;
@@ -22,6 +23,7 @@ export default function Task({ data }: TasklistProps) {
   const task = JSON.parse(data) as Task;
   return (
     <section className={styles.container}>
+      <SEO title={task.name} />
       <div className={styles.card}>
         <div className={styles.content}>
           <div className={styles.head}>

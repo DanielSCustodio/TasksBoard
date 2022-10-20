@@ -5,7 +5,7 @@ import styles from './styles.module.sass';
 export default function SupportButton() {
   return (
     <div className={styles.donateContainer}>
-      <Link href="/donate">
+      <Link href="/apoia-se">
         <button>Apoiar</button>
       </Link>
     </div>
