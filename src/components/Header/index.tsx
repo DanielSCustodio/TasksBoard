@@ -16,7 +16,7 @@ export default function Header() {
             <a>
               <img
                 id={style['logo-desktop']}
-                src="images/logo.svg"
+                src="/images/logo.svg"
                 alt="logo TasksBoard"
               />
             </a>
@@ -25,7 +25,7 @@ export default function Header() {
             <a>
               <img
                 id={style['logo-mobile']}
-                src="images/favicon.svg"
+                src="/images/favicon.svg"
                 alt="logo TasksBoard"
               />
             </a>
@@ -37,7 +37,7 @@ export default function Header() {
               <Link href="/">
                 <a>Início</a>
               </Link>
-              <Link href="/board">
+              <Link href="/tarefas">
                 <a>Tarefas</a>
               </Link>
             </nav>

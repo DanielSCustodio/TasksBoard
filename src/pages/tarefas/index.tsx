@@ -33,7 +33,7 @@ interface BoardProps {
   data: string;
 }
 
-export default function Board({ user, data }: BoardProps) {
+export default function Tarefas({ user, data }: BoardProps) {
   const [input, setInput] = React.useState('');
   const [taskEdit, setTaskEdit] = React.useState<TaskList | null>(null);
   const [error, setError] = React.useState('');
@@ -110,6 +110,9 @@ export default function Board({ user, data }: BoardProps) {
       .then(() => {
         const filter = tasksList.filter((item) => item.id !== id);
         setTasksLists([...filter]);
+        setTaskEdit(null);
+        setInput('');
+        inputElement.current.focus();
       });
   }
 
@@ -163,7 +166,7 @@ export default function Board({ user, data }: BoardProps) {
         {tasksList &&
           tasksList.map((item) => (
             <article className={styles.taskLists} key={item.id}>
-              <Link href={`/board/${item.id}`}>
+              <Link href={`/tarefas/${item.id}`}>
                 <p>{item.task}</p>
               </Link>
 
