@@ -166,7 +166,7 @@ export default function Tarefas({ user, data }: BoardProps) {
         {tasksList &&
           tasksList.map((item) => (
             <article className={styles.taskLists} key={item.id}>
-              <Link href={`/board/${item.id}`}>
+              <Link href={`/tarefas/${item.id}`}>
                 <p>{item.task}</p>
               </Link>
 
