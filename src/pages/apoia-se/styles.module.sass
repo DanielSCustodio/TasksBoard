@@ -1,0 +1,112 @@
+@import '../../styles/_variables'
+
+.container
+  padding: 6rem 1rem
+  display: flex
+  justify-content: center
+  align-items: space-between
+
+  @media(max-width: 912px) 
+    padding-top: 25% 
+    flex-direction: column
+
+  @media(max-width: 720px) 
+    padding: 9rem 1rem
+    flex-direction: column
+    height: 100vh
+    justify-content: flex-start
+
+.background
+  width: 50%
+
+  @media(max-width: 912px) 
+    width: 100%
+  img
+      width: 100%
+
+  @media(max-width: 720px) 
+    width: 100%
+  img
+    width: 100%
+
+.content
+  display: flex
+  flex-direction:  column
+  justify-content: space-between
+
+  @media(max-width: 912px) 
+    width: 80%
+    margin: 0 auto
+
+  @media(max-width: 720px) 
+    width: 100%
+    padding: 0 1rem
+    
+  div
+    display: flex
+    justify-content: flex-start
+    align-items:  center
+    border: 1px solid $color-02
+    padding-right: 1rem
+    border-radius: 6px
+    font-weight: bold
+    transition: 0.8s
+    color: $color-02
+
+    @media(max-width: 912px) 
+      margin: 5rem 0 3rem
+
+    @media(max-width: 720px) 
+      margin: 5rem 0 2rem
+
+    img
+      width: 60px
+      height: 60px
+      border-radius: 6px
+      object-fit: cover
+      margin-right: 1rem
+  
+  h1
+    text-transform: uppercase
+    font-size: 1.4rem
+    color: $color-02
+
+    @media(max-width: 912px) 
+      margin-bottom: 3rem
+
+
+    @media(max-width: 720px) 
+      margin-bottom: 2rem
+      font-size: 1rem
+
+  h3
+    padding: 1rem
+    background-color: $color-03
+    border-radius: 60px
+    font-weight: 300
+    color: #ffffff
+    box-shadow: 1px 1px 2px #000000a0
+
+    @media(max-width: 912px) 
+      margin-bottom: 3rem
+
+    @media(max-width: 720px) 
+      margin-bottom: 2rem
+      padding: 0.5rem
+
+    span
+      font-weight: bold
+
+  p
+    font-size: 0.9rem
+    @media(max-width: 912px) 
+      font-size: 1rem
+    @media(max-width: 720px) 
+      font-size: 0.8rem
+
+
+
+
+
+
+
