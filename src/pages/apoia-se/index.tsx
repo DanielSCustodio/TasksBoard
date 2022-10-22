@@ -1,7 +1,8 @@
+import React from 'react';
+import firebase from '../../services/firebaseConnection';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
 import { PayPalButtons } from '@paypal/react-paypal-js';
-import React from 'react';
 import SEO from '../../components/SEO';
 import styles from './styles.module.sass';
 
@@ -14,6 +15,13 @@ interface DonateProps {
 }
 
 export default function ApoiaSe({ user }: DonateProps) {
+  async function handleSaveDonate() {
+    await firebase.firestore().collection('users').doc(user.id).set({
+      donate: true,
+      lastDonate: new Date(),
+      image: user.image,
+    });
+  }
   return (
     <main className={styles.container}>
       <SEO title="Apoia-se" />
@@ -48,7 +56,7 @@ export default function ApoiaSe({ user }: DonateProps) {
             }}
             onApprove={(data, actions) => {
               return actions.order.capture().then(function (details) {
-                console.log('compra aprovada' + details.payer.name.given_name);
+                handleSaveDonate();
               });
             }}
           />
