@@ -1,6 +1,8 @@
+import React from 'react';
+import firebase from '../../services/firebaseConnection';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
-import React from 'react';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 import SEO from '../../components/SEO';
 import styles from './styles.module.sass';
 
@@ -13,6 +15,21 @@ interface DonateProps {
 }
 
 export default function ApoiaSe({ user }: DonateProps) {
+  const [donor, setDonor] = React.useState(false);
+  async function handleSaveDonate() {
+    await firebase
+      .firestore()
+      .collection('users')
+      .doc(user.id)
+      .set({
+        donate: true,
+        lastDonate: new Date(),
+        image: user.image,
+      })
+      .then(() => {
+        setDonor(true);
+      });
+  }
   return (
     <main className={styles.container}>
       <SEO title="Apoia-se" />
@@ -23,15 +40,39 @@ export default function ApoiaSe({ user }: DonateProps) {
         />
       </div>
       <div className={styles.content}>
-        <div>
-          <img src={user.image} alt="Foto do usuário" />
-          Parabéns, {user.name}! Você é um novo apoiador.
-        </div>
-        <h1>Seja um apoiador deste projeto ⭐ </h1>
+        {donor && (
+          <div>
+            <img src={user.image} alt="Foto do usuário" />
+            Obrigado por apoiar, {user.name}! Aproveite as funcionalidades
+            extras.
+          </div>
+        )}
+        <h1>Apoie este projeto 🥺</h1>
         <h3>
           Contribua com apenas <span>R$ 0,01</span>
         </h3>
-        <p>Apareça em nossa home, tenha funcionalidades exclusivas.</p>
+        <p>Apareça em nossa home e tenha funcionalidades exclusivas.</p>
+        <div className={styles.paypal}>
+          <h4>Eu quero apoiar</h4>
+          <PayPalButtons
+            createOrder={(data, actions) => {
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    amount: {
+                      value: '0.01',
+                    },
+                  },
+                ],
+              });
+            }}
+            onApprove={(data, actions) => {
+              return actions.order.capture().then(function (details) {
+                handleSaveDonate();
+              });
+            }}
+          />
+        </div>
       </div>
     </main>
   );
