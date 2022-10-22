@@ -1,10 +1,10 @@
 @import '../../styles/_variables'
 
 .container
-  padding: 6rem 1rem
   display: flex
   justify-content: center
-  align-items: space-between
+  align-items: center
+  min-height: calc(100vh - 60px)
 
   @media(max-width: 912px) 
     padding-top: 25% 
@@ -32,7 +32,9 @@
 .content
   display: flex
   flex-direction:  column
-  justify-content: space-between
+  justify-content: space-around
+  height: 90vh
+  padding-top: 6rem
 
   @media(max-width: 912px) 
     width: 80%
@@ -46,12 +48,9 @@
     display: flex
     justify-content: flex-start
     align-items:  center
-    border: 1px solid $color-02
     padding-right: 1rem
     border-radius: 6px
-    font-weight: bold
     transition: 0.8s
-    color: $color-02
 
     @media(max-width: 912px) 
       margin: 5rem 0 3rem
@@ -105,8 +104,9 @@
     @media(max-width: 720px) 
       font-size: 0.8rem
 
-
-
+.paypal
+  margin: 0 auto
+  
 
 
 

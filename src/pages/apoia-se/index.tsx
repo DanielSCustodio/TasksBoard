@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 import React from 'react';
 import SEO from '../../components/SEO';
 import styles from './styles.module.sass';
@@ -32,6 +33,26 @@ export default function ApoiaSe({ user }: DonateProps) {
           Contribua com apenas <span>R$ 0,01</span>
         </h3>
         <p>Apareça em nossa home, tenha funcionalidades exclusivas.</p>
+        <div className={styles.paypal}>
+          <PayPalButtons
+            createOrder={(data, actions) => {
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    amount: {
+                      value: '0.01',
+                    },
+                  },
+                ],
+              });
+            }}
+            onApprove={(data, actions) => {
+              return actions.order.capture().then(function (details) {
+                console.log('compra aprovada' + details.payer.name.given_name);
+              });
+            }}
+          />
+        </div>
       </div>
     </main>
   );

@@ -3,7 +3,7 @@
 
 .container
   padding-top: 6rem
-  height: 100vh
+  min-height: calc(100vh - 60px)
   max-width: 70vw
   margin: 0 auto
 
@@ -71,8 +71,7 @@
       &:hover
         filter: brightness(1.1)
         box-shadow: 1px 1px 8px #000000a0
-
-    
+        
 .taskLists
   background-color: $color-04
   padding: 1rem
@@ -87,6 +86,10 @@
 
     @media(max-width: 720px) 
       font-size: 0.9rem
+
+  &:hover
+      color: $color-02
+      font-weight: bold
 
   .actions
     width: 100%
