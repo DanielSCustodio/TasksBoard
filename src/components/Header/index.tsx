@@ -40,6 +40,9 @@ export default function Header() {
               <Link href="/tarefas">
                 <a>Tarefas</a>
               </Link>
+              <Link href="apoia-se/">
+                <a>Seja um apoiador</a>
+              </Link>
             </nav>
           )}
         </div>

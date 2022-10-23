@@ -35,6 +35,8 @@ export default function Home({ data }: HomeProps) {
           <p>Nunca foi tão fácil se organizar</p>
           {!session && (
             <>
+              <h3>Cadastro rápido e fácil.</h3>
+
               <button
                 type="button"
                 className={style.SigInButtonGitHub}
@@ -62,6 +64,63 @@ export default function Home({ data }: HomeProps) {
           <p>
             Experimente <span>agora</span> mesmo!
           </p>
+        </section>
+
+        <section className={style.prices}>
+          <div>
+            <section>
+              <p>Free</p>
+              <h3>R$ 0,00</h3>
+            </section>
+            <ul>
+              <li>
+                <img src="/images/check.png" width="20px" />
+                Criar tarefa
+              </li>
+              <li>
+                <img src="/images/check.png" width="20px" />
+                Excluir tarefa
+              </li>
+            </ul>
+            <img
+              src="/images/free.png"
+              alt="icone do pacote free"
+              width="35px"
+            />
+          </div>
+          <div>
+            <section>
+              <p>Apoiador</p>
+              <h3>R$ 0,01</h3>
+            </section>
+            <ul>
+              <li>
+                <img src="/images/check.png" width="20px" />
+                Criar tarefa
+              </li>
+              <li>
+                <img src="/images/check.png" width="20px" />
+                Excluir tarefa
+              </li>
+              <li>
+                <img src="/images/check.png" width="20px" />
+                Editar tarefa
+              </li>
+              <li>
+                <img src="/images/check.png" width="20px" />
+                Foto na página inicial
+              </li>
+              <li>
+                <img src="/images/check.png" width="20px" />
+                Página de detalhe da tarefa
+              </li>
+            </ul>
+            <img
+              src="/images/premium.png"
+              alt="icone do pacote premium"
+              width="35px"
+            />
+          </div>
         </section>
         <div className={style.donatersContainer}>
           {donaters.length >= 1 && <h2>Apoiadores</h2>}

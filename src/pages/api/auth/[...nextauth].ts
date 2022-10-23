@@ -49,8 +49,7 @@ export default NextAuth({
       }
     },
 
-    async signIn(user, account, profile) {
-      const { email } = user;
+    async signIn() {
       try {
         return true;
       } catch (error) {
