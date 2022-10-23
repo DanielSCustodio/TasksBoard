@@ -1,12 +1,27 @@
+/* eslint-disable @next/next/no-img-element */
+import React from 'react';
 import { GetStaticProps } from 'next';
 import { FaGithub } from 'react-icons/fa';
 import { ImGoogle3 } from 'react-icons/im';
 import { signIn, useSession } from 'next-auth/client';
-import React from 'react';
+import firebase from '../services/firebaseConnection';
 import SEO from '../components/SEO';
 import style from '../styles/home.module.sass';
 
-export default function Home() {
+interface HomeProps {
+  data: string;
+}
+
+type Data = {
+  id: string;
+  donate: boolean;
+  lastDonate: Date;
+  image: string;
+  name: string;
+};
+
+export default function Home({ data }: HomeProps) {
+  const [donaters, setDonaters] = React.useState<Data[]>(JSON.parse(data));
   const [session] = useSession();
 
   return (
@@ -49,21 +64,14 @@ export default function Home() {
           </p>
         </section>
         <div className={style.donatersContainer}>
-          <h2>Apoiadores</h2>
+          {donaters.length >= 1 && <h2>Apoiadores</h2>}
           <div className={style.donatersContent}>
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
-            <img src="images/daniel.png" alt="Usuário doador" />
+            {donaters.map(
+              (item) =>
+                item.image && (
+                  <img key={item.id} src={item.image} alt={item.name} />
+                ),
+            )}
           </div>
         </div>
       </main>
@@ -72,8 +80,18 @@ export default function Home() {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
+  const donaters = await firebase.firestore().collection('users').get();
+  const data = JSON.stringify(
+    donaters.docs.map((item) => {
+      return {
+        id: item.id,
+        ...item.data(),
+      };
+    }),
+  );
+
   return {
-    props: {},
+    props: { data },
     revalidate: 60 * 60,
   };
 };
