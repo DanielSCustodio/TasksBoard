@@ -4,7 +4,7 @@ import { FiLogOut } from 'react-icons/fi';
 import styles from './styles.module.sass';
 import Image from 'next/image';
 
-export default function SignInButton() {
+export default function SignOutButton() {
   const [session] = useSession();
 
   return session ? (

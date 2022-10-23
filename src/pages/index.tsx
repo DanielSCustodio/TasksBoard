@@ -21,7 +21,7 @@ type Data = {
 };
 
 export default function Home({ data }: HomeProps) {
-  const [donaters, setDonaters] = React.useState<Data[]>(JSON.parse(data));
+  const [donaters] = React.useState<Data[]>(JSON.parse(data));
   const [session] = useSession();
 
   return (

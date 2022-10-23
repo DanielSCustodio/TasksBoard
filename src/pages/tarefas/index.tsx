@@ -1,5 +1,6 @@
 import React from 'react';
-import { format } from 'date-fns';
+import { format, formatDistance } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import Link from 'next/link';
 import firebase from '../../services/firebaseConnection';
 import { GetServerSideProps } from 'next';
@@ -29,6 +30,8 @@ interface BoardProps {
   user: {
     id: string;
     name: string;
+    donor: boolean;
+    lastDonate: string | Date;
   };
   data: string;
 }
@@ -40,6 +43,7 @@ export default function Tarefas({ user, data }: BoardProps) {
   const [tasksList, setTasksLists] = React.useState<TaskList[]>(
     JSON.parse(data),
   );
+
   const inputElement = React.useRef<HTMLInputElement>();
 
   function handleInput(e: { target: { value: React.SetStateAction<string> } }) {
@@ -166,9 +170,13 @@ export default function Tarefas({ user, data }: BoardProps) {
         {tasksList &&
           tasksList.map((item) => (
             <article className={styles.taskLists} key={item.id}>
-              <Link href={`/tarefas/${item.id}`}>
+              {user.donor ? (
+                <Link href={`/tarefas/${item.id}`}>
+                  <a>{item.task}</a>
+                </Link>
+              ) : (
                 <p>{item.task}</p>
-              </Link>
+              )}
 
               <div className={styles.actions}>
                 <div>
@@ -176,10 +184,12 @@ export default function Tarefas({ user, data }: BoardProps) {
                     <FiCalendar size={20} color="#BCCC9A" />
                     <time>{item.createdFormated}</time>
                   </div>
-                  <button onClick={() => handleEdit(item)}>
-                    <FiEdit2 size={18} color="#BCCC9A" />
-                    <span>Editar</span>
-                  </button>
+                  {user.donor && (
+                    <button onClick={() => handleEdit(item)}>
+                      <FiEdit2 size={18} color="#BCCC9A" />
+                      <span>Editar</span>
+                    </button>
+                  )}
                 </div>
                 <button onClick={() => handleDelete(item.id)}>
                   <FiTrash size={18} color="#ff5b5b" />
@@ -189,13 +199,21 @@ export default function Tarefas({ user, data }: BoardProps) {
             </article>
           ))}
       </section>
-      <section className={styles.vipsContainer}>
-        <h3>Obrigado por apoiar ⭐</h3>
-        <div>
-          <FiClock size={20} />
-          <time>Ultima doação foi há 3 dias.</time>
-        </div>
-      </section>
+      {user.donor && (
+        <section className={styles.vipsContainer}>
+          <h3>Obrigado por apoiar ⭐</h3>
+          <div>
+            <FiClock size={20} />
+            <time>
+              Ultima doação foi há{' '}
+              {formatDistance(new Date(user.lastDonate), new Date(), {
+                locale: ptBR,
+              })}
+              .
+            </time>
+          </div>
+        </section>
+      )}
       <SupportButton />
     </section>
   );
@@ -233,6 +251,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const user = {
     name: session?.user.name,
     id: session?.id,
+    donor: session?.donor,
+    lastDonate: session?.lastDonate,
   };
 
   return {
