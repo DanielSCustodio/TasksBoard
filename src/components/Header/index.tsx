@@ -41,7 +41,7 @@ export default function Header() {
                 <a>Tarefas</a>
               </Link>
               <Link href="apoia-se/">
-                <a>Seja um apoiador</a>
+                <a>Apoia-se</a>
               </Link>
             </nav>
           )}
