@@ -4,6 +4,7 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { AppProps } from 'next/app';
 import '../styles/global.sass';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const initialProps = {
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <PayPalScriptProvider options={initialProps}>
         <Header />
         <Component {...pageProps} />
+        <Footer />
       </PayPalScriptProvider>
     </Auth>
   );
