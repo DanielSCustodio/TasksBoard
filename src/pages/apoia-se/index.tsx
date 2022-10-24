@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import firebase from '../../services/firebaseConnection';
 import { GetServerSideProps } from 'next';
@@ -16,6 +17,7 @@ interface DonateProps {
 
 export default function ApoiaSe({ user }: DonateProps) {
   const [donor, setDonor] = React.useState(false);
+
   async function handleSaveDonate() {
     await firebase
       .firestore()
@@ -25,6 +27,7 @@ export default function ApoiaSe({ user }: DonateProps) {
         donate: true,
         lastDonate: new Date(),
         image: user.image,
+        name: user.name,
       })
       .then(() => {
         setDonor(true);
@@ -67,7 +70,7 @@ export default function ApoiaSe({ user }: DonateProps) {
               });
             }}
             onApprove={(data, actions) => {
-              return actions.order.capture().then(function (details) {
+              return actions.order.capture().then(function () {
                 handleSaveDonate();
               });
             }}

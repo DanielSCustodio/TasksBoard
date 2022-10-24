@@ -6,7 +6,7 @@
     "jest": true
   },
   "extends": [
-    "eslint:recommended",
+    "plugin:@next/next/recommended",
     "plugin:prettier/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",

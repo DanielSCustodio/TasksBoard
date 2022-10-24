@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const { id } = params;
   const session = await getSession({ req });
 
-  if (!session?.id) {
+  if (!session?.donor) {
     return {
       redirect: {
         destination: '/tarefas',
@@ -74,7 +74,19 @@ export const getServerSideProps: GetServerSideProps = async ({
         name: snapshot.data().name,
       };
       return JSON.stringify(data);
+    })
+    .catch(() => {
+      return {};
     });
+
+  if (Object.keys(data).length === 0) {
+    return {
+      redirect: {
+        destination: '/tarefas',
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: { data },

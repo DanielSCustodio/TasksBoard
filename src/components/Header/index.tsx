@@ -1,9 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import { useSession } from 'next-auth/client';
-
 import Link from 'next/link';
 import style from './styles.module.sass';
-import SigInButton from '../SignOututton';
+import SignOutButton from '../SignOutButton';
 
 export default function Header() {
   const [session] = useSession();
@@ -40,10 +40,13 @@ export default function Header() {
               <Link href="/tarefas">
                 <a>Tarefas</a>
               </Link>
+              <Link href="apoia-se/">
+                <a>Seja um apoiador</a>
+              </Link>
             </nav>
           )}
         </div>
-        <SigInButton />
+        <SignOutButton />
       </div>
     </header>
   );
