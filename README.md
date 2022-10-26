@@ -41,8 +41,6 @@ Abaixo estão os links para obter as credencias e configurar o login.
 
 Ao fazer o deploy da aplicação e obter uma url, lembre-se de trocar a url nas configurações de cada serviço.
 
-##Firebase
-
 ## Instalando Dependências
 
 > Na raiz do projeto, execute o comando abaixo:
