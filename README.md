@@ -16,6 +16,11 @@ Front-end:
 Back-end:
 > Desenvolvido usando: Firebase
 
+## Firebase
+Os dados de usuários e tarefas estão sendo armazenados no Firestore. Caso tenha dificuldade ou não tenha conhecimento em configurar e criar uma coleção de dados no Firestore, recomendo fortemente que leia a documentação abaixo:
+
+Documentação: https://firebase.google.com/docs/firestore/
+
 ## Método de pagamento
 Atualmente o método de pagamento está em modo teste, mas basta alterar as configurações no console developer do PayPayl para o pagamento entrar em produção e ser 100% funcional.<br>
 Documentação para realizar a integração: https://developer.paypal.com/docs/checkout/standard/integrate/
@@ -35,6 +40,8 @@ Abaixo estão os links para obter as credencias e configurar o login.
 > Provider Google: https://next-auth.js.org/providers/google
 
 Ao fazer o deploy da aplicação e obter uma url, lembre-se de trocar a url nas configurações de cada serviço.
+
+##Firebase
 
 ## Instalando Dependências
 
