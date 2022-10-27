@@ -14,7 +14,7 @@ export default function Footer() {
       </div>
       <div>
         <a
-          href="https://portfolio-daniel-custodio.vercel.app/"
+          href="https://portfolio-daniel-custodio.netlify.app/"
           target="_blank"
           rel="noreferrer"
         >
