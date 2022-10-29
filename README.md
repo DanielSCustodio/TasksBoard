@@ -11,10 +11,10 @@ Existe a opção do usuário ser um apoiador do projeto, realizando pagamento at
 ## Tecnologias usadas
 
 Front-end:
-> Desenvolvido usando: Next.js, React, Typescript, SASS
+> Next.js, React, Typescript, SASS
 
 Back-end:
-> Desenvolvido usando: Firebase
+> Firebase
 
 ## Firebase
 Os dados de usuários e tarefas estão sendo armazenados no Firestore. Caso tenha dificuldade ou não tenha conhecimento em configurar e criar uma coleção de dados no Firestore, recomendo fortemente que leia a documentação abaixo:
