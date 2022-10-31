@@ -8,7 +8,7 @@ Esta aplicação se trata de um organizador de tarefas, a partir da criação de
 O login poderá ser realizado via conta Google ou conta do GitHub. Após logado, o usuário poderá criar notas e também excluí-las. <br>
 Existe a opção do usuário ser um apoiador do projeto, realizando pagamento através do PayPal. Os apoiadores terão os seguintes diferencias dentro da aplicação: editar tarefa, foto na página inicial, página de detalhe da tarefa.
 
-## Tecnologias usadas
+## Tecnologias
 
 Front-end:
 > Next.js, React, Typescript, SASS
