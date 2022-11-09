@@ -7,8 +7,6 @@ import { signIn, useSession } from 'next-auth/client';
 import firebase from '../services/firebaseConnection';
 import SEO from '../components/SEO';
 import style from '../styles/home.module.sass';
-import Loading from '../components/Loading';
-
 interface HomeProps {
   data: string;
 }
@@ -25,21 +23,10 @@ export default function Home({ data }: HomeProps) {
   const [donaters] = React.useState<Data[]>(JSON.parse(data));
   const [session] = useSession();
 
-  const [loading, setLoading] = React.useState(false);
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setLoading(true);
-    }, 1000);
-  }, []);
-
   return (
     <>
       <SEO title="Início" />
-      {!loading ? (
-        <Loading />
-      ) : (
-        <main>
+      <main>
           <div className={style.banner}>
             <h1>
               Tasks<span>Board</span>
@@ -146,7 +133,6 @@ export default function Home({ data }: HomeProps) {
             </div>
           </div>
         </main>
-      )}
     </>
   );
 }
