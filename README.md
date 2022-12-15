@@ -3,7 +3,7 @@
 ![2022-10-25_19-10](https://user-images.githubusercontent.com/29557187/197891812-cfa8eee3-bc11-4b5c-8b57-43b6b56c72df.png)
 
 
-## Contexto
+## sobre
 Um organizador de tarefas, a partir da criação de notas/lembretes. Para ter acesso a criação de notas é necessário realizar login. <br>
 O login poderá ser realizado via conta Google ou conta do GitHub. Após logado, o usuário poderá criar notas e também excluí-las. <br>
 Existe a opção do usuário ser um apoiador do projeto, realizando pagamento através do PayPal. Os apoiadores terão os seguintes diferencias dentro da aplicação: editar tarefa, foto na página inicial, página de detalhes da tarefa.
