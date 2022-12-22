@@ -4,7 +4,7 @@
 
 
 ## Sobre
-Um organizador de tarefas, a partir da criação de notas/lembretes. Para ter acesso a criação de notas é necessário realizar login. <br>
+Organizador de tarefas, a partir da criação de notas/lembretes. Para ter acesso a criação de notas é necessário realizar login. <br>
 O login poderá ser realizado via conta Google ou conta do GitHub. Após logado, o usuário poderá criar notas e também excluí-las. <br>
 Existe a opção do usuário ser um apoiador do projeto, realizando pagamento através do PayPal. Os apoiadores terão os seguintes diferencias dentro da aplicação: editar tarefa, foto na página inicial, página de detalhes da tarefa.
 
