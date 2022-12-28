@@ -31,7 +31,7 @@ Caso queira testar esta aplicação em produção, utilize o acesso abaixo:
 
 ## Variáveis de ambiente
 Crie um arquivo chamado ``.env.local`` <br>
-utilize o arquivo ``.env.example`` para se guiar <br>
+Utilize o arquivo ``.env.example`` para se guiar <br>
 As variáveis contidas nesse aquivo se trata das credencias necessárias realizar o login via conta Google e GitHub. Para isso foi utilizado a biblioteca `NextAuth.js` <br>
 
 Abaixo estão os links para obter as credencias e configurar o login.
