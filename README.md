@@ -17,7 +17,7 @@ Back-end:
 > Firebase
 
 ## Firebase
-Os dados de usuários e tarefas estão sendo armazenados no Firestore. Caso tenha dificuldade ou não tenha conhecimento em configurar e criar uma coleção de dados no Firestore, recomendo fortemente que leia a documentação abaixo:
+Os dados de usuários e tarefas estão sendo armazenados no Firestore. Caso tenha alguma dificuldade ou não tenha conhecimento em configurar e criar uma coleção de dados no Firestore, recomendo fortemente que leia a documentação abaixo:
 
 Documentação: https://firebase.google.com/docs/firestore/
 
