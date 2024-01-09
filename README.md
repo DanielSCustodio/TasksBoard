@@ -1,6 +1,4 @@
 # TasksBoard
-[![Abrir no Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/DanielSCustodio/TasksBoard)
-![2022-10-25_19-10](https://user-images.githubusercontent.com/29557187/197891812-cfa8eee3-bc11-4b5c-8b57-43b6b56c72df.png)
 
 
 ## Sobre
